@@ -1,4 +1,4 @@
-var timetable = [
+var timetable = [ //時刻表 近大高専前▶名張駅東口
     "5:30", "5:55",
     "6:08", "6:21",
     "7:05", "7:15", "7:21", "7:29", "7:46", "7:59",
@@ -8,7 +8,7 @@ var timetable = [
     "11:00", "11:20", "11:40",
     "12:02", "12:22", "12:40",
     "13:02", "13:22", "13:40",
-    "14:02", "14:22", "14:40", "14:54",
+    "14:02", "14:22","14:40", "14:54",
     "15:10", "15:30", "15:44",
     "16:04", "16:20", "16:30", "16:44",
     "17:04", "17:20", "17:39", "17:54",
@@ -37,11 +37,13 @@ var timetable = [
       var diff = getTimeDifference(currentTimeString, time);
   
       if (diff >= 0 && diff < nearestDiff) {
+        nextbus = timetable[i + 1]; //その次
         nearestTime = time;
         nearestDiff = diff;
       }
+      
     }
-  
+    
     return nearestTime;
   }
   
@@ -74,7 +76,17 @@ var timetable = [
       var nearestTimeElement = document.getElementById("nearest-time");
       nearestTimeElement.textContent = "次のバス: " + nearestTime;
     } else {
-      console.log("No timetable available.");
+      nearestTimeElement.textContent = "本日のバス終了";
+      console.log("No timetable");
+    }
+
+    if (nextbus){
+        var nextTimeElement = document.getElementById("next-time");
+        nextTimeElement.textContent = "その次のバス: " + nextbus;
+    } else {
+        var nextTimeElement = document.getElementById("next-time");
+        nextTimeElement.textContent = "その次のバスはありません";
+        console.log("No timetable");
     }
   }
   
