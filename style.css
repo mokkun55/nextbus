@@ -1,6 +1,80 @@
 body {
-    /* background-color: black;
-    color: aliceblue; */
+    background-color: rgb(196, 238, 255);
+    /* color: aliceblue; */
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* font-size: ; */
+
+}
+
+#header {
+    font-size: 90px;
+    border-bottom: 3px solid #aaa;
+    color: #aaa;
+}
+
+#main {
+    font-size: 60px;
+}
+
+#basyo1 {
+    width: 950px;
+    margin: 2px;
+    padding: 2px;
+    /*内側余白*/
+    border: double 5px #4874da;
+    /*線の種類・太さ・色*/
+    background-color: #9cb2f2;
+    text-align: center;
+}
+
+#basyo2 {
+    width: 950px;
+    margin: 2px;
+    padding: 2px;
+    /*内側余白*/
+    border: double 5px #4874da;
+    /*線の種類・太さ・色*/
+    background-color: #9cb2f2;
+    text-align: center;
+}
+
+#nearest-time {
+    width: 150px;
+    padding: 0.5rem 0;
+    margin-bottom: 0.2rem;
+    border-bottom: 6px double #464840;
+    font-weight: bold;
+}
+
+#next-time {
+    width: 150px;
+    padding: 0.5rem 0;
+    margin-bottom: 0.2rem;
+    border-bottom: 6px double #464840;
+    font-weight: bold;
+}
+#arrival-time {
+    width: 150px;
+    padding: 0.5rem 0;
+    margin-bottom: 0.2rem;
+    border-bottom: 6px double #464840;
+    font-weight: bold;
+}
+
+#next-arrival-time {
+    width: 150px;
+    padding: 0.5rem 0;
+    margin-bottom: 0.2rem;
+    border-bottom: 6px double #464840;
+    font-weight: bold;
+}
+
+#function {
     font-size: 50px;
+}
+
+button{
+    font-size: 90px;
+    width: 10em;
+    height:2em;
 }

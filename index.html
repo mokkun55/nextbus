@@ -1,14 +1,47 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>時刻表</title>
-        <link rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
-    </head>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>時刻表</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+
 <body>
-    <div id="nowtime"></div>
-    <div id="nearest-time"></div>
-    <div id="next-time"></div>
-    <script src="script.js"></script>
+  <div id="header">バスと電車の時刻表(仮</div>
+
+  <!-- <div id="nowtime"></div>
+    <div id="nearest-time"> </div>
+    <div id="next-time"></div> -->
+  <script src="script.js"></script>
+
+  <div id="main">
+    <p id="nowtime"></p>
+
+    <div id="basu_syuppatu">
+      <p id="basyo1">出発 近大高専前/三重交通</p>
+        <p id="next-bus">次のバス</p>
+        <div id="a1-2">
+          <p id="nearest-time"></p>
+          <p id="next-time"></p>
+        </div>
+    </div>
+
+    <div id="bus_toutyaku">
+      <p id="basyo2">到着 名張駅東口</p>
+      <p>到着予定時刻</p>
+      <div id="yotei1-2"></div>
+      <p id="arrival-time"></p>
+      <p id="next-arrival-time">xx:xx</p>
+    </div>
+  </div>
+
+  <div id="function">
+    <button id="time_change" >検索時間変更</button>
+    <button id="detail">時刻表詳細</button>
+  </div>
+  </div>
+
+
 </body>
