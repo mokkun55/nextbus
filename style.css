@@ -1,80 +1,86 @@
 body {
     background-color: rgb(196, 238, 255);
-    /* color: aliceblue; */
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    /* font-size: ; */
-
 }
 
 #header {
-    font-size: 90px;
+    font-size: 85px;
     border-bottom: 3px solid #aaa;
     color: #aaa;
 }
 
-#main {
+#main{
     font-size: 60px;
 }
 
-#basyo1 {
+#basyo1,#basyo2 {
     width: 950px;
     margin: 2px;
     padding: 2px;
-    /*内側余白*/
     border: double 5px #4874da;
-    /*線の種類・太さ・色*/
     background-color: #9cb2f2;
     text-align: center;
 }
 
-#basyo2 {
-    width: 950px;
-    margin: 2px;
-    padding: 2px;
-    /*内側余白*/
-    border: double 5px #4874da;
-    /*線の種類・太さ・色*/
-    background-color: #9cb2f2;
-    text-align: center;
-}
-
-#nearest-time {
-    width: 150px;
-    padding: 0.5rem 0;
-    margin-bottom: 0.2rem;
-    border-bottom: 6px double #464840;
-    font-weight: bold;
-}
-
-#next-time {
-    width: 150px;
-    padding: 0.5rem 0;
-    margin-bottom: 0.2rem;
-    border-bottom: 6px double #464840;
-    font-weight: bold;
-}
-#arrival-time {
-    width: 150px;
-    padding: 0.5rem 0;
-    margin-bottom: 0.2rem;
-    border-bottom: 6px double #464840;
-    font-weight: bold;
-}
-
+#closestTime,
+#secondClosestTime,
+#arrival-time,
 #next-arrival-time {
     width: 150px;
     padding: 0.5rem 0;
-    margin-bottom: 0.2rem;
+    margin-bottom: 1ren;
     border-bottom: 6px double #464840;
     font-weight: bold;
 }
 
 #function {
+
     font-size: 50px;
 }
 
 button{
-    font-size: 90px;
+    font-size: 50px;
     width: 10em;
-    height:2em;
+    height: 2em;
+    margin: auto;
+}
+
+#next-bus,
+#toutyaku-bus{
+    display: flex;
+    align-items: center; /* 上下中央に配置 */
+}
+
+#closestTime-1,
+#secondClosestTime-2,
+#arrival-time-1,
+#next-arrival-time-2{
+    display: flex;
+}
+
+#time1-2,
+#yotei1-2{
+    flex-direction: column;
+    padding-left:15px;
+    margin-top:0px;
+    margin-bottom:0px;
+    margin-left: 15px; /* 適切なマージンを設定してください */
+  }
+  
+#abcdef{
+  padding: 1rem 3rem;
+  -webkit-transform: skew(-15deg);
+  transform: skew(-15deg);
+  color: #fff;
+  background-image: -webkit-gradient(linear, left top, right top, from(#209cff), to(#68e0cf));
+  background-image: -webkit-linear-gradient(left, #209cff 0%, #68e0cf 100%);
+  background-image: linear-gradient(to right, #209cff 0%, #68e0cf 100%);
+}
+
+#train{
+    
+    font-size: 60px;
+    border: double 5px #4874da;
+    background-color: #9cb2f2;
+    text-align: center;
 }
