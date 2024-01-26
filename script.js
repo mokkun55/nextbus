@@ -3,22 +3,23 @@ let tripfile = `trips.txt`;
 let stopfile = `stop_times.txt`;
 let heijitu = `5_1_20231101`; // 平日パターン
 let kyujitu = `5_2_20231101`; // 休日パターン
-let youbi = heijitu; // ここをボタンで切り替えれるように
+// let youbi = heijitu; // ここをボタンで切り替えれるように
 let tripid; // tripid をグローバルに宣言
 
-window.onload = function () {
-    //曜日を判定する
-    var date = new Date () ;
-    var dayOfWeek = date.getDay();
-    console.log(dayOfWeek); //
-    if (dayOfWeek == 0 || dayOfWeek == 6) {
-        youbi = kyujitu;
-        console.log('休日')
-    } else {
-        youbi = heijitu;
-        console.log('平日')
-    }
 
+//曜日の判定
+var date = new Date () ;
+var dayOfWeek = date.getDay();
+console.log(dayOfWeek); //
+if (dayOfWeek == 0 || dayOfWeek == 6) {
+    youbi = kyujitu;
+    console.log('休日')
+} else {
+    youbi = heijitu;
+    console.log('平日')
+}
+
+window.onload = function () {
     fetch(tripfile)
     .then(response => response.text())
     .then(data => {
@@ -112,4 +113,20 @@ function findClosestFutureTimes(timeArray) {
     return [closestTime, secondClosestTime];
 }
 
+//時刻表新規タブ 日時判定して表示
+function train_timetable() {
+    if (youbi == heijitu) {
+        window.open('https://eki.kintetsu.co.jp/norikae/T5?uid=18184&dir=21&path=202401229721734&USR=PC&pFlg=1&dw=0&slCode=356-35&d=1', '_self');
+    } else {
+        window.open('https://eki.kintetsu.co.jp/norikae/T5?uid=18184&dir=21&path=202401229721734&USR=PC&pFlg=1&dw=1&slCode=356-35&d=1', )
+    }
+    
+  }
 
+// urlメモ
+// 平日ーー
+// 大阪方面 https://eki.kintetsu.co.jp/norikae/T5?uid=18184&dir=21&path=202401229721734&USR=PC&pFlg=1&dw=0&slCode=356-35&d=1
+// 名古屋方面 https://eki.kintetsu.co.jp/norikae/T5?uid=18184&dir=21&path=202401229721734&USR=PC&pFlg=1&dw=0&slCode=356-35&d=2
+// 土日祝日ーー
+// 大阪方面 https://eki.kintetsu.co.jp/norikae/T5?uid=18184&dir=21&path=202401229721734&USR=PC&pFlg=1&dw=1&slCode=356-35&d=1
+// 名古屋方面 https://eki.kintetsu.co.jp/norikae/T5?uid=18184&dir=21&path=202401229721734&USR=PC&pFlg=1&dw=1&slCode=356-35&d=2

@@ -13,14 +13,14 @@ body {
     font-size: 60px;
 }
 
-#basyo1,#basyo2 {
+/* #basyo1,#basyo2 {
     width: 950px;
     margin: 2px;
     padding: 2px;
     border: double 5px #4874da;
     background-color: #9cb2f2;
     text-align: center;
-}
+} */
 
 #closestTime,
 #secondClosestTime,
@@ -38,13 +38,6 @@ body {
     font-size: 50px;
 }
 
-button{
-    font-size: 50px;
-    width: 10em;
-    height: 2em;
-    margin: auto;
-}
-
 #next-bus,
 #toutyaku-bus{
     display: flex;
@@ -58,15 +51,18 @@ button{
     display: flex;
 }
 
-#time1-2,
-#yotei1-2{
+
+/* 次のバスの①②のところ */
+#time1-2{
     flex-direction: column;
     padding-left:15px;
     margin-top:0px;
     margin-bottom:0px;
-    margin-left: 15px; /* 適切なマージンを設定してください */
+    margin-left: 15px; 
   }
   
+
+/* 次のバスのかっこいい表示 */
 #abcdef{
   padding: 1rem 3rem;
   -webkit-transform: skew(-15deg);
@@ -77,10 +73,28 @@ button{
   background-image: linear-gradient(to right, #209cff 0%, #68e0cf 100%);
 }
 
-#train{
+
+/* 青い帯 */
+#train ,#basyo1, #basyo2{ 
     
     font-size: 60px;
     border: double 5px #4874da;
     background-color: #9cb2f2;
     text-align: center;
+}
+
+
+/* ボタン全般 */
+input{
+    font-size: 60px;
+}
+
+
+/* 行き↔帰り 切り替えボタン */
+#kirikae_btn{ 
+    color:red
+}
+
+#rinji{
+    font-size: 100px;
 }

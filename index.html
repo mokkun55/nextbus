@@ -16,7 +16,7 @@
   <div id="main">
     <p id="currentTime"></p>
 
-    <button id="bus_kirikae">行き↔帰り</button>
+    <input type="button" value="行き↔帰り" onclick="bus_kirikae()" id="kirikae_btn">
 
     <div id="bus_syuppatu">
       <p id="basyo1">出発 近大高専前/三重交通</p>
@@ -26,6 +26,7 @@
             <div id="closestTime-1">
               <p id="nunber-1">①</p>
               <p id="closestTime"></p>
+              <p id="timeDifference"></p>
             </div>
 
             <div id="secondClosestTime-2">
@@ -35,33 +36,21 @@
           </div>
         </div>
         <p id="basyo2">到着 名張駅東口</p> 
+
     </div>
-
-    <!-- <div id="bus_toutyaku"> -->
-       <!-- <p id="basyo2">到着 名張駅東口</p>  -->
-        <!-- <div id="toutyaku-bus">
-          <p id="abcdef">到着時刻</p>  
-          <div id="yotei1-2">
-            <div id="arrival-time-1">
-              <p id="nunber-1">①</p>
-              <p id="arrival-time"></p>
-            </div>
-
-            <div id="next-arrival-time-2">
-              <p id="nunber-2">②</p>
-              <p id="next-arrival-time">xx:xx</p>
-            </div>
-          </div>
-        </div>
-    </div> -->
-
   </div>
 
   <p id="train">名張駅時刻表
+    <div id="train_timetable">
+      <p id="rinji">ここに時刻表貼り付ける</p>
+    </div>
+
+
+
     <div id="function">
-      <button id="train_kirikae">大阪↔名古屋</button>
-      <button id="time_change" >検索時間変更</button>
-      <button onclick="location.href='https://ekitan.com/timetable/railway/line-station/356-35/d1?dw=0'"  id="detail" >時刻表詳細</a> <!--buttonで別タブで開くようにしたい。-->
+      <input type="button" value="大阪↔名古屋" onclick="train_kirikae()">
+      <input type="button" value="検索時刻指定" onclick="time_change()">
+      <input type="button" value="詳細時刻表(近鉄ｻｲﾄ)" onclick="train_timetable()">
     </div>
   </p>
 
