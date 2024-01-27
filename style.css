@@ -95,6 +95,49 @@ input{
     color:red
 }
 
-#rinji{
-    font-size: 100px;
+
+/* ーーーーーーーーここから電車時刻表 表示ーーーーーーーーー */
+
+#tableContainer {
+    width: 100%;
+    overflow: scroll;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+
+/* テーブル線の色 */
+th, td { 
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* evenが表の偶数番目を示す oddは奇数 */
+tr:nth-child(even) {
+    background-color: #e4e4e4; 
+}
+tr:nth-child(odd) {
+    background-color: #dcdcff; 
+}
+
+/* テーブルヘッダー */
+th {
+    background-color: #096900; 
+    color: white;
+}
+
+/* ダイアのテキスト設定 */
+th:nth-child(1), td:nth-child(1) {
+    font-weight: bold;
+    font-size: 2em;
+    text-align:center;
+}
+/* 時刻のテキスト設定 */
+td {
+    font-size: 1.5em;
+}
+
+/* ーーーーーーーーここまでーーーーーーーーー */

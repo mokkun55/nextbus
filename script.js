@@ -71,6 +71,25 @@ window.onload = function () {
             .catch(error => console.error('エラー:', error));
     })
     .catch(error => console.error('エラー:', error));
+
+
+    //ここから時刻表表示プログラム
+    fetch('day_osaka.csv')
+    .then(response => response.text())
+    .then(data => {
+        let parsedCSV = data.split('\n').slice(1).map(row => row.split(','));
+        let tableBody = document.querySelector("#timeTable tbody");
+        parsedCSV.forEach(row => {
+            let htmlRow = document.createElement('tr');
+            row.forEach(cell => {
+                let htmlCell = document.createElement('td');
+                htmlCell.textContent = cell;
+                htmlRow.appendChild(htmlCell);
+            });
+            tableBody.appendChild(htmlRow);
+        });
+    });
+    //ここまでダイア表示
 };
 
 function timeToSeconds(time) {
@@ -118,7 +137,7 @@ function train_timetable() {
     if (youbi == heijitu) {
         window.open('https://eki.kintetsu.co.jp/norikae/T5?uid=18184&dir=21&path=202401229721734&USR=PC&pFlg=1&dw=0&slCode=356-35&d=1', '_self');
     } else {
-        window.open('https://eki.kintetsu.co.jp/norikae/T5?uid=18184&dir=21&path=202401229721734&USR=PC&pFlg=1&dw=1&slCode=356-35&d=1', )
+        window.open('https://eki.kintetsu.co.jp/norikae/T5?uid=18184&dir=21&path=202401229721734&USR=PC&pFlg=1&dw=1&slCode=356-35&d=1', '_self');
     }
     
   }

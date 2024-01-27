@@ -9,12 +9,12 @@
 </head>
 
 <body>
-  <div id="header">バスと電車の時刻表</div>
+  <div id="header">時刻表</div>
 
   <script src="script.js"></script>
 
   <div id="main">
-    <p id="currentTime"></p>
+    <!-- <p id="currentTime"></p>今は非表示 -->
 
     <input type="button" value="行き↔帰り" onclick="bus_kirikae()" id="kirikae_btn">
 
@@ -40,10 +40,19 @@
     </div>
   </div>
 
-  <p id="train">名張駅時刻表
-    <div id="train_timetable">
-      <p id="rinji">ここに時刻表貼り付ける</p>
-    </div>
+  <p id="train">本日のダイア</p>
+  <div id="tableContainer">
+      <table id="timeTable">
+        <thead>
+            <tr>
+                <th id="hour">時刻</th>
+                <th id="day">平日</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+  </div>
 
 
 
