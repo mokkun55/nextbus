@@ -74,23 +74,27 @@ window.onload = function () {
 
 
     //ここから時刻表表示プログラム
-    fetch('day_osaka.csv')
-    .then(response => response.text())
-    .then(data => {
-        let parsedCSV = data.split('\n').slice(1).map(row => row.split(','));
-        let tableBody = document.querySelector("#timeTable tbody");
-        parsedCSV.forEach(row => {
-            let htmlRow = document.createElement('tr');
-            row.forEach(cell => {
-                let htmlCell = document.createElement('td');
-                htmlCell.textContent = cell;
-                htmlRow.appendChild(htmlCell);
+        fetch('day_osaka.csv')
+        .then(response => response.text())
+        .then(data => {
+            let parsedCSV = data.split('\n').slice(1).map(row => row.split(','));
+            let tableBody = document.querySelector("#timeTable tbody");
+            let currentHour = new Date().getHours();
+            parsedCSV.forEach((row, index) => {
+                let htmlRow = document.createElement('tr');
+                if (index === currentHour - 5) {
+                    htmlRow.style.backgroundColor = 'orange';
+                }
+                row.forEach(cell => {
+                    let htmlCell = document.createElement('td');
+                    htmlCell.textContent = cell;
+                    htmlRow.appendChild(htmlCell);
+                });
+                tableBody.appendChild(htmlRow);
             });
-            tableBody.appendChild(htmlRow);
         });
-    });
+    };
     //ここまでダイア表示
-};
 
 function timeToSeconds(time) {
     const [hours, minutes, seconds] = time.split(':').map(Number);
