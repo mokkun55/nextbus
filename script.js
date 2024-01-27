@@ -5,21 +5,27 @@ let heijitu = `5_1_20231101`; // 平日パターン
 let kyujitu = `5_2_20231101`; // 休日パターン
 // let youbi = heijitu; // ここをボタンで切り替えれるように
 let tripid; // tripid をグローバルに宣言
-
+let kirikae = 0;
 
 //曜日の判定
-var date = new Date () ;
+var date = new Date();
 var dayOfWeek = date.getDay();
 console.log(dayOfWeek); //
 if (dayOfWeek == 0 || dayOfWeek == 6) {
     youbi = kyujitu;
-    console.log('休日')
+    console.log('休日');
 } else {
     youbi = heijitu;
-    console.log('平日')
+    console.log('平日');
 }
 
-window.onload = function () {
+function main() {
+    console.log('あいうえお');
+    
+    // 既存のテーブルを削除
+    const tableBody = document.querySelector("#timeTable tbody");
+    tableBody.innerHTML = "";
+
     fetch(tripfile)
     .then(response => response.text())
     .then(data => {
@@ -74,27 +80,38 @@ window.onload = function () {
 
 
     //ここから時刻表表示プログラム
-        fetch('day_osaka.csv')
-        .then(response => response.text())
-        .then(data => {
-            let parsedCSV = data.split('\n').slice(1).map(row => row.split(','));
-            let tableBody = document.querySelector("#timeTable tbody");
-            let currentHour = new Date().getHours();
-            parsedCSV.forEach((row, index) => {
-                let htmlRow = document.createElement('tr');
-                if (index === currentHour - 5) {
-                    htmlRow.style.backgroundColor = 'orange';
-                }
-                row.forEach(cell => {
-                    let htmlCell = document.createElement('td');
-                    htmlCell.textContent = cell;
-                    htmlRow.appendChild(htmlCell);
-                });
-                tableBody.appendChild(htmlRow);
+
+    //大阪 名古屋 切り替え判定
+    if (kirikae % 2 == 1) {
+        console.log('大阪')
+        train_csvfile = 'day_osaka.csv'
+    } else {
+        console.log('名古屋')
+        train_csvfile = 'day_nagoya.csv'
+    }
+
+
+    fetch(train_csvfile)
+    .then(response => response.text())
+    .then(data => {
+        let parsedCSV = data.split('\n').slice(1).map(row => row.split(','));
+        let tableBody = document.querySelector("#timeTable tbody");
+        let currentHour = new Date().getHours();
+        parsedCSV.forEach((row, index) => {
+            let htmlRow = document.createElement('tr');
+            if (index === currentHour - 5) {
+                htmlRow.style.backgroundColor = 'orange';
+            }
+            row.forEach(cell => {
+                let htmlCell = document.createElement('td');
+                htmlCell.textContent = cell;
+                htmlRow.appendChild(htmlCell);
             });
+            tableBody.appendChild(htmlRow);
         });
-    };
-    //ここまでダイア表示
+    });
+};
+//ここまでダイア表示
 
 function timeToSeconds(time) {
     const [hours, minutes, seconds] = time.split(':').map(Number);
@@ -134,22 +151,13 @@ function findClosestFutureTimes(timeArray) {
     }
 
     return [closestTime, secondClosestTime];
+
 }
 
-//時刻表新規タブ 日時判定して表示
-function train_timetable() {
-    if (youbi == heijitu) {
-        window.open('https://eki.kintetsu.co.jp/norikae/T5?uid=18184&dir=21&path=202401229721734&USR=PC&pFlg=1&dw=0&slCode=356-35&d=1', '_self');
-    } else {
-        window.open('https://eki.kintetsu.co.jp/norikae/T5?uid=18184&dir=21&path=202401229721734&USR=PC&pFlg=1&dw=1&slCode=356-35&d=1', '_self');
-    }
-    
-  }
+// ページがロードされたら main 関数を実行
+window.onload = main;
 
-// urlメモ
-// 平日ーー
-// 大阪方面 https://eki.kintetsu.co.jp/norikae/T5?uid=18184&dir=21&path=202401229721734&USR=PC&pFlg=1&dw=0&slCode=356-35&d=1
-// 名古屋方面 https://eki.kintetsu.co.jp/norikae/T5?uid=18184&dir=21&path=202401229721734&USR=PC&pFlg=1&dw=0&slCode=356-35&d=2
-// 土日祝日ーー
-// 大阪方面 https://eki.kintetsu.co.jp/norikae/T5?uid=18184&dir=21&path=202401229721734&USR=PC&pFlg=1&dw=1&slCode=356-35&d=1
-// 名古屋方面 https://eki.kintetsu.co.jp/norikae/T5?uid=18184&dir=21&path=202401229721734&USR=PC&pFlg=1&dw=1&slCode=356-35&d=2
+function train_kirikae(){
+    kirikae ++;
+    main();
+}

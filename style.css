@@ -7,20 +7,21 @@ body {
     font-size: 85px;
     border-bottom: 3px solid #aaa;
     color: #aaa;
+    margin-bottom: 30px;
 }
 
 #main{
     font-size: 60px;
+    
 }
 
-/* #basyo1,#basyo2 {
-    width: 950px;
-    margin: 2px;
-    padding: 2px;
-    border: double 5px #4874da;
-    background-color: #9cb2f2;
-    text-align: center;
-} */
+#basyo1{
+    margin-top:30px;
+    margin-bottom: 10px;
+}
+#basyo2{
+    margin-top: 10px;
+}
 
 #closestTime,
 #secondClosestTime,
@@ -86,7 +87,21 @@ body {
 
 /* ボタン全般 */
 input{
-    font-size: 60px;
+    font-size: 0.5em;
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #668AD8;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+}
+  input:active{
+    /*ボタンを押したとき*/
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);/*影を小さく*/
+    border-bottom: none;
 }
 
 
