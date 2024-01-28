@@ -11,12 +11,12 @@
 <body>
   <div id="header">時刻表</div>
 
-  <script src="script.js"></script>
+  
 
   <div id="main">
-    <!-- <p id="currentTime"></p>今は非表示 -->
+    <p id="currentTime"></p>
 
-    <input type="button" value="行き↔帰り" onclick="bus_kirikae()" id="kirikae_btn">
+    <!-- <input type="button" value="行き↔帰り" onclick="bus_kirikae()" id="kirikae_btn"> -->
 
     <div id="bus_syuppatu">
       <p id="basyo1">出発 近大高専前/三重交通</p>
@@ -26,7 +26,6 @@
             <div id="closestTime-1">
               <p id="nunber-1">①</p>
               <p id="closestTime"></p>
-              <p id="timeDifference"></p>
             </div>
 
             <div id="secondClosestTime-2">
@@ -36,32 +35,37 @@
           </div>
         </div>
         <p id="basyo2">到着 名張駅東口</p> 
+        <div id="next-bus">
+          <p id="abcdef">到着予想</p><!--id適当-->
+          <div id="time1-2">
+            <div id="closestTime-1">
+              <p id="nunber-1">①</p>
+              <p id="nextTime"></p>
+            </div>
 
+            <div id="secondClosestTime-2">
+              <p id="nunber-2">②</p>
+              <p id="secondnextTime"></p>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
 
   <p id="train">本日(平日or休日)のダイア(〇〇方面)</p>
-
+  <input type="button" value="大阪↔名古屋" onclick="train_kirikae()" id="function">
   <div id="tableContainer">
       <table id="timeTable">
         <thead>
             <tr>
                 <th id="hour">時刻</th>
-                <th id="day">平日</th>
+                <th id="day">電車</th>
             </tr>
         </thead>
         <tbody>
         </tbody>
     </table>
   </div>
-
-
-
-    <div id="function">
-      <input type="button" value="大阪↔名古屋" onclick="train_kirikae()">
-      <!-- <input type="button" value="検索時刻指定" onclick="time_change()"> -->
-      <!-- <input type="button" value="ダイア詳細(近鉄ｻｲﾄ)" onclick="train_timetable()"> -->
-    </div>
   </p>
-
+  <script src="script.js"></script>
 </body>

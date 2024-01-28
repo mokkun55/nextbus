@@ -1,30 +1,51 @@
-let fileContent; // ファイルの内容を保存するための変数を定義します
+let fileContent; // ファイルの内容を保存するため
 let tripfile = `trips.txt`;
 let stopfile = `stop_times.txt`;
 let heijitu = `5_1_20231101`; // 平日パターン
 let kyujitu = `5_2_20231101`; // 休日パターン
 // let youbi = heijitu; // ここをボタンで切り替えれるように
 let tripid; // tripid をグローバルに宣言
-let kirikae = 0;
+let train_kirikae_num = 0;
+let bus_kirikae_num = 0;
+
+let train_houkou = '名古屋方面' //初期設定
+let bus_houkou = '名張駅行' //初期設定
+
+let station_id = '5736_2' //初期設定 → 駅行
+// let station_id = '5803_1' //初期設定 → 学校行
 
 //曜日の判定
 var date = new Date();
 var dayOfWeek = date.getDay();
-console.log(dayOfWeek); //
+// console.log(dayOfWeek); 
 if (dayOfWeek == 0 || dayOfWeek == 6) {
     youbi = kyujitu;
     console.log('休日');
+    day = '休日';
 } else {
     youbi = heijitu;
     console.log('平日');
+    day = '平日';
 }
 
+
 function main() {
-    console.log('あいうえお');
-    
     // 既存のテーブルを削除
     const tableBody = document.querySelector("#timeTable tbody");
     tableBody.innerHTML = "";
+
+    // バス切り替え判定
+    // if (bus_kirikae_num % 2 == 1) {
+    //     console.log('駅行')
+
+    //     bus_houkou = '名古屋'
+    //     station_id = '5803_1'
+    // } else {
+    //     console.log('学校行')
+    //     bus_houkou = '大阪'
+    //     station_id = '5736_2'
+    // }
+
 
     fetch(tripfile)
     .then(response => response.text())
@@ -39,8 +60,10 @@ function main() {
             }
         }
         tripid.sort();
+        // console.log(tripid)
         return tripid;
     })
+    
     .then(tripid => {
         fetch(stopfile)
             .then(response => response.text())
@@ -48,9 +71,10 @@ function main() {
                 let cleanedData = data.replace(/"/g, '');
                 let lines = cleanedData.split('\n');
                 let arrivalTimes = [];
+                console.log(station_id)
                 for (let line of lines) {
                     let [trip_id, arrival_time, departure_time, stop_id, stop_sequence, stop_headsign, pickup_type, drop_off_type, shape_dist_traveled] = line.split(',');
-                    if (tripid.includes(trip_id) && stop_id === '5736_2') {
+                    if (tripid.includes(trip_id) && stop_id === station_id) {
                         arrivalTimes.push(arrival_time);
                     }
                 }
@@ -61,16 +85,15 @@ function main() {
 
                 const updateTimes = function () {
                     const [closestFutureTime, secondClosestTime] = findClosestFutureTimes(times);
+                    const nextTime = addMinutes(closestFutureTime, 10); // closestFutureTime に 10 分追加
+                    const secondnextTime = addMinutes(secondClosestTime, 10); // secondClosestTime に 10 分追加
                     document.getElementById('closestTime').textContent = closestFutureTime;
                     document.getElementById('secondClosestTime').textContent = secondClosestTime;
-
+                    document.getElementById('nextTime').textContent = nextTime;
+                    document.getElementById('secondnextTime').textContent = secondnextTime;
                     const now = new Date();
-                    // document.getElementById('currentTime').textContent = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
-                    
-                    // 再帰的に setInteval を呼び出す
                     setTimeout(updateTimes, 1000);
                 };
-
                 // 初回実行
                 updateTimes();
             })
@@ -82,14 +105,25 @@ function main() {
     //ここから時刻表表示プログラム
 
     //大阪 名古屋 切り替え判定
-    if (kirikae % 2 == 1) {
-        console.log('大阪')
-        train_csvfile = 'day_osaka.csv'
+    if (train_kirikae_num % 2 == 1) {
+        console.log('大阪方面')
+        train_houkou = '大阪'
+        if (youbi == heijitu){
+            train_csvfile = 'day_osaka.csv'
+        } else {
+            train_csvfile = 'holiday_osaka.csv'
+        }
+        
     } else {
-        console.log('名古屋')
-        train_csvfile = 'day_nagoya.csv'
+        console.log('名古屋方面')
+        train_houkou = '名古屋'
+        if (youbi == heijitu){
+            train_csvfile = 'day_ise.csv'
+        } else {
+            train_csvfile = 'holiday_ise.csv'
+        }
     }
-
+    document.getElementById('train').innerHTML = `本日[${day}]のダイア<br>名張駅→${train_houkou}方面` ;
 
     fetch(train_csvfile)
     .then(response => response.text())
@@ -112,6 +146,10 @@ function main() {
     });
 };
 //ここまでダイア表示
+
+
+
+
 
 function timeToSeconds(time) {
     const [hours, minutes, seconds] = time.split(':').map(Number);
@@ -153,11 +191,25 @@ function findClosestFutureTimes(timeArray) {
     return [closestTime, secondClosestTime];
 
 }
-
-// ページがロードされたら main 関数を実行
-window.onload = main;
+function addMinutes(time, minutes) {
+    const [hours, mins] = time.split(':').map(Number);
+    const totalMinutes = hours * 60 + mins + minutes;
+    const newHours = Math.floor(totalMinutes / 60);
+    const newMins = totalMinutes % 60;
+    return `${newHours.toString().padStart(2, '0')}:${newMins.toString().padStart(2, '0')}`;
+}
+// ページがロードされたら 
+window.onload = function(){
+    main();
+    document.getElementById('train').innerHTML = `本日[${day}]のダイア<br>名張駅→${train_houkou}方面` ;
+}
 
 function train_kirikae(){
-    kirikae ++;
+    train_kirikae_num ++;
+    main();
+}
+
+function bus_kirikae(){
+    bus_kirikae_num ++;
     main();
 }
