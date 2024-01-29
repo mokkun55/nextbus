@@ -8,20 +8,13 @@ let tripid; // tripid をグローバルに宣言
 let train_kirikae_num = 0;
 let bus_kirikae_num = 0;
 
-let train_houkou = '名古屋方面' //初期設定
+let train_houkou = '伊勢方面' //初期設定
 let bus_houkou = '名張駅行' //初期設定
 
 let station_id = '5736_2' //初期設定 → 駅行
 // let station_id = '5803_1' //初期設定 → 学校行
 
-let over_view = `時刻表凡例<br>
-
-[区準]:区間準急 [特急]:近鉄特急 [V]:ビスタカー [快急]:快速急行 [UL■]:アーバンライナー:車いす対応車両 [ISL■]:伊勢志摩ライナー:車いす対応車両 [普通]:普通 [急行]:急行 [準急]:準急<br>
-
-位･･･五位堂 京･･･京都 高･･･高安 上･･･上本町 難･･･難波<br>
-
-下線:当駅始発
-`
+// let over_view = `<b>時刻表凡例</b><br> [V]:ﾋﾞｽﾀｶｰ <br>[UL■]:アーバンライナー:車いす対応 <br>[ISL■]:伊勢志摩ライナー:車いす対応<br>中･･･伊勢中川 宇･･･宇治山田 賢･･･賢島<br>五･･･五十鈴川<br>松･･･松阪 青･･･青山町 鳥･･･鳥羽 名･･･伊勢 明･･･明星<br>下線:当駅始発`
 //曜日の判定
 var date = new Date();
 var dayOfWeek = date.getDay();
@@ -46,7 +39,7 @@ function main() {
     // if (bus_kirikae_num % 2 == 1) {
     //     console.log('駅行')
 
-    //     bus_houkou = '名古屋'
+    //     bus_houkou = '伊勢'
     //     station_id = '5803_1'
     // } else {
     //     console.log('学校行')
@@ -112,11 +105,11 @@ function main() {
 
     //ここから時刻表表示プログラム
 
-    //大阪 名古屋 切り替え判定
+    //大阪 伊勢 切り替え判定
     if (train_kirikae_num % 2 == 1) {
         console.log('大阪方面')
         train_houkou = '大阪'
-        over_view = `時刻表凡例<br>[区準]:区間準急 [特急]:近鉄特急 [V]:ビスタカー [快急]:快速急行 [UL■]:アーバンライナー:車いす対応車両 [ISL■]:伊勢志摩ライナー:車いす対応車両 [普通]:普通 [急行]:急行 [準急]:準急<br>位･･･五位堂 京･･･京都 高･･･高安 上･･･上本町 難･･･難波<br>下線:当駅始発`
+        over_view = `<b>時刻表凡例</b><br>[V]:ﾋﾞｽﾀｶｰ<br>[UL■]:アーバンライナー:車いす対応 <br>[ISL■]:伊勢志摩ライナー:車いす対応<br>位･･･五位堂 京･･･京都 高･･･高安 上･･･上本町 難･･･難波<br>下線:当駅始発`
         if (youbi == heijitu){
             train_csvfile = 'day_osaka.csv'
         } else {
@@ -124,9 +117,9 @@ function main() {
         }
         
     } else {
-        console.log('名古屋方面')
-        train_houkou = '名古屋'
-        over_view = `時刻表凡例<br>[特急]:近鉄特急 [V]:ビスタカー [快急]:快速急行 [UL■]:アーバンライナー:車いす対応車両 [ISL■]:伊勢志摩ライナー:車いす対応車両 [普通]:普通 [急行]:急行<br>中･･･伊勢中川 宇･･･宇治山田 賢･･･賢島 五･･･五十鈴川 松･･･松阪 青･･･青山町 鳥･･･鳥羽 名･･･名古屋 明･･･明星<br>下線:当駅始発`
+        console.log('伊勢方面')
+        train_houkou = '伊勢'
+        over_view = `<b>時刻表凡例</b><br> [V]:ﾋﾞｽﾀｶｰ <br>[UL■]:アーバンライナー:車いす対応 <br>[ISL■]:伊勢志摩ライナー:車いす対応<br>中･･･伊勢中川 宇･･･宇治山田 賢･･･賢島<br>五･･･五十鈴川 松･･･松阪 青･･･青山町 鳥･･･鳥羽 名･･･伊勢 明･･･明星<br>下線:当駅始発`
         if (youbi == heijitu){
             train_csvfile = 'day_ise.csv'
         } else {
