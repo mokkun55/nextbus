@@ -1,26 +1,34 @@
 body {
-    background-color: rgb(196, 238, 255);
+    background-color: rgb(196, 232, 246);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 #header {
-    font-size: 85px;
-    border-bottom: 3px solid #aaa;
-    color: #aaa;
-    margin-bottom: 30px;
+    font-size: 75px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center; /* 左右中央に配置 */
+    color: #494949;/*文字色*/
+    background: #f4f4f4;/*背景色*/
+    border-left: solid 20px #7db4e6;/*左線*/
+    border-bottom: solid 10px #b6b6b6;/*下線*/
 }
+
+
 
 #main{
     font-size: 60px;
-    
 }
 
 #basyo1{
-    margin-top:30px;
-    margin-bottom: 10px;
+    margin-top:0px;
+    margin-bottom: 0px;
 }
+
 #basyo2{
-    margin-top: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 #closestTime,
@@ -37,14 +45,17 @@ body {
 }
 
 #function {
-
     font-size: 50px;
+    display: inline-block;
+    text-align: center; 
 }
 
 #next-bus,
 #toutyaku-bus{
     display: flex;
     align-items: center; /* 上下中央に配置 */
+    justify-content: center; /* 左右中央に配置 */
+    padding-right: 150px;
 }
 
 #closestTime-1,
@@ -54,61 +65,65 @@ body {
     display: flex;
 }
 
-
 /* 次のバスの①②のところ */
 #time1-2{
     flex-direction: column;
     padding-left:15px;
     margin-top:0px;
     margin-bottom:0px;
-    margin-left: 15px; 
-  }
-  
+    margin-left: 15px;
+}
 
 /* 次のバスのかっこいい表示 */
 #abcdef{
-  padding: 1rem 3rem;
+  padding: 0.5rem 3rem;
   -webkit-transform: skew(-15deg);
   transform: skew(-15deg);
   color: #fff;
-  background-image: -webkit-gradient(linear, left top, right top, from(#209cff), to(#68e0cf));
-  background-image: -webkit-linear-gradient(left, #209cff 0%, #68e0cf 100%);
-  background-image: linear-gradient(to right, #209cff 0%, #68e0cf 100%);
+  background-image: -webkit-gradient(linear, left top, right top, from(#209CFF), to(#68E0CF));
+  background-image: -webkit-linear-gradient(left, #209CFF 0%, #68E0CF 100%);
+  background-image: linear-gradient(to right, #209CFF 0%, #68E0CF 100%);
 }
-
 
 /* 青い帯 */
-#train ,#basyo1, #basyo2{ 
+#train ,#basyo1, #basyo2{
     font-size: 60px;
-    border: double 5px #4874da;
-    background-color: #9cb2f2;
     text-align: center;
+    margin-top: 0px;
+    border-radius: 20px;/*角の丸み*/
+
+    /*主な装飾*/
+    background: #a1daf1;/*背景色*/
+    background-image: radial-gradient(#fff 10%, transparent 15%), radial-gradient(#fff 10%, transparent 15%);
+    background-position: 0 0, 10px 10px;
+    background-size: 20px 20px;
+    color:#333;/*文字色*/
+    border:solid 4px #88c9fe
 }
 
+#train{
+    margin-bottom: 30px;
+}
 
 /* ボタン全般 */
 input{
-    font-size: 0.5em;
-    display: inline-block;
     padding: 0.5em 1em;
+    margin-bottom: 5px;
+
     text-decoration: none;
     background: #668AD8;/*ボタン色*/
     color: #FFF;
     border-bottom: solid 4px #627295;
     border-radius: 3px;
 }
+
+
   input:active{
     /*ボタンを押したとき*/
     -webkit-transform: translateY(4px);
     transform: translateY(4px);/*下に動く*/
     box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);/*影を小さく*/
     border-bottom: none;
-}
-
-
-/* 行き↔帰り 切り替えボタン */
-#kirikae_btn{ 
-    color:red
 }
 
 
