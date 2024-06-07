@@ -126,7 +126,7 @@ function main() {
             train_csvfile = 'holiday_ise.csv'
         }
     }
-    document.getElementById('train').innerHTML = `本日[${day}]のダイア<br>名張駅→${train_houkou}方面` ;
+    document.getElementById('train').innerHTML = `本日[${day}]のダイヤ<br>名張駅→${train_houkou}方面` ;
     document.getElementById('train_overview').innerHTML = over_view ;
     fetch(train_csvfile)
     .then(response => response.text())
